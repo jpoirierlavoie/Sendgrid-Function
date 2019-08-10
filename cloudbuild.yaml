@@ -1,0 +1,25 @@
+steps:
+- name: "gcr.io/cloud-builders/gcloud"
+  args:
+    [
+      "kms", "decrypt",
+      "--ciphertext-file=envvars.encrypted",
+      "--plaintext-file=envars.yaml",
+      "--location=global",
+      "--keyring=environment-variables",
+      "--key=environment-variables"
+    ]
+- name: "gcr.io/cloud-builders/gcloud"
+  args:
+    [
+      "functions", "deploy", "CLOUD_FUNCTION_NAME",
+      "--region=us-central1",
+      "--entry-point=PYTHON_FUNCTION_NAME",
+      "--memory=128mb",
+      "--runtime=python37",
+      "--timeout=60s",
+      "--env-vars-file=envars.yaml",
+      "--max-instances=1",
+      "--trigger-http"
+    ]
+timeout: "360s"

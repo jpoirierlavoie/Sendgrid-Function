@@ -1,1 +1,1 @@
-# cloud-function-template
+# google-cloud-function-template

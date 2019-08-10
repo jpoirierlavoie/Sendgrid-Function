@@ -1,0 +1,7 @@
+.gcloudignore
+.gitignore
+.git
+README.md
+LICENSE
+envvars.yaml
+cloudbuild.yaml
