@@ -12,8 +12,3 @@ jobs:
     name: Style Checking
     steps:  
       - uses: andymckay/pycodestyle-action@0.1.3
-  secrets:
-    runs-on: ubuntu-latest
-    name: Secret Scan
-    steps:  
-      - uses: max/secret-scan@master
