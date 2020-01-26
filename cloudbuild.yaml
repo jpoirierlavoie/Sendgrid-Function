@@ -1,25 +1,36 @@
 steps:
 - name: "gcr.io/cloud-builders/gcloud"
+  id: "Decrypt Environment Variables"
   args:
     [
-      "kms", "decrypt",
-      "--ciphertext-file=envvars.encrypted",
-      "--plaintext-file=envars.yaml",
-      "--location=global",
-      "--keyring=environment-variables",
-      "--key=environment-variables"
+    "kms",
+    "decrypt",
+    "--key=environment-variables",
+    "--keyring=cloud-build-keys",
+    "--location=global",
+    "--ciphertext-file=envvars.encrypted",
+    "--plaintext-file=envvars.yaml"
     ]
+  timeout: 60s
 - name: "gcr.io/cloud-builders/gcloud"
+  id: "Deploy Cloud Function"
+  waitFor:
+    [
+    "Decrypt Environment Variables"
+    ]
   args:
     [
-      "functions", "deploy", "CLOUD_FUNCTION_NAME",
-      "--region=us-central1",
-      "--entry-point=PYTHON_FUNCTION_NAME",
-      "--memory=128mb",
-      "--runtime=python37",
-      "--timeout=60s",
-      "--env-vars-file=envars.yaml",
-      "--max-instances=1",
-      "--trigger-http"
+    "functions",
+    "deploy",
+    "sendgrid-function",
+    "--region=us-central1",
+    "--entry-point=sendgrid_function",
+    "--memory=128MB",
+    "--runtime=python37",
+    "--timeout=30s",
+    "--max-instances=1",
+    "--trigger-http",
+    "--env-vars-file=envvars.yaml"
     ]
-timeout: "360s"
+  timeout: 120s
+timeout: 180s

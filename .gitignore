@@ -1,2 +1,3 @@
-# Uncomment once the yaml is populated
-#envvars.yaml
+.gcloudignore
+.gitignore
+envvars.decrypted
