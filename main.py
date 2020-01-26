@@ -3,7 +3,7 @@ import sendgrid
 from flask import request
 
 def sendgrid_function(request):
-#   if request.method == "POST":
+    if request.method == "POST":
         message = {
             "personalizations": [
                 {
@@ -36,5 +36,5 @@ def sendgrid_function(request):
         if response.status_code == 202:
             return "Email sent successfully"
         return "Status Code: " + str(response.status_code)
-#           else:
-#        error = "Invalid Method. Only POST methods are accepted."
+    else:
+        error = "Invalid Method. Only POST methods are accepted."
