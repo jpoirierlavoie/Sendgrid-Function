@@ -9,7 +9,6 @@ jobs:
       - uses: cclauss/Find-Python-syntax-errors-action@master
   check:
     runs-on: ubuntu-latest
-    name: Python Style Check
+    name: Python Style Checking
     steps:  
-      - name: Python Style Checker
       - uses: andymckay/pycodestyle-action@0.1.3
