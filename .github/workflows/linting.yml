@@ -1,9 +1,15 @@
-name: Lint Python
+name: Python Check
 on: push
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Linting
+    name: Python Linting
     steps:
       - uses: actions/checkout@v2
       - uses: cclauss/Find-Python-syntax-errors-action@master
+  check:
+    runs-on: ubuntu-latest
+    name: Python Style Check
+    steps:  
+      - name: Python Style Checker
+      - uses: andymckay/pycodestyle-action@0.1.3
