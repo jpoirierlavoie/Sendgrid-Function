@@ -1,4 +1,4 @@
-# Sendgrid Cloud Function
+# Sendgrid Mail Cloud Function
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82c15ca64036429690a6eb14d9695539)](https://app.codacy.com/manual/jason_46/sendgrid-mail-cloud-function?utm_source=github.com&utm_medium=referral&utm_content=jpoirierlavoie/sendgrid-mail-cloud-function&utm_campaign=Badge_Grade_Dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/jpoirierlavoie/sendgrid-mail-cloud-function/badge)](https://www.codefactor.io/repository/github/jpoirierlavoie/sendgrid-mail-cloud-function)
