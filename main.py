@@ -1,7 +1,30 @@
 import os
 import sendgrid
+import json
+from urllib.parse import urlencode
+from urllib.request import urlopen
+
+def recaptcha_validation():
+
+    recaptchaURI = "https://www.google.com/recaptcha/api/siteverify"
+    recaptcha_response = request.form.get("recaptcha_response", None)
+    recaptcha_secret = os.environ["RECAPTCHA_SECRET"]
+    remote_ip = request.remote_addr
+    params = urlencode({
+        "secret": recaptcha_secret,
+        "response": recaptcha_response,
+        "remote_ip": remote_ip,
+        })
+    data = urlopen(recaptchaURI, params.encode("utf-8")).read()
+    result = json.loads(data)
+    success = result.get("success", None)
+
+    if success == True:
+        print "Recaptcha passed."
+    print "Recaptcha failed."
 
 def sendgrid_function(request):
+
     if request.method == "POST":
         message = {
             "personalizations": [
@@ -12,7 +35,7 @@ def sendgrid_function(request):
                             "name": os.environ["TO_NAME"]
                         }
                     ],
-                    "subject": os.environ["SUBJECT"]
+                    "subject": os.environ["SUBJECT"]  + request.form["subject"]
                 }
             ],
             "from": {
@@ -33,6 +56,6 @@ def sendgrid_function(request):
         sg = sendgrid.SendGridAPIClient(os.environ["SENDGRID_API_KEY"])
         response = sg.send(message)
         if response.status_code == 202:
-            return "Email sent successfully"
+            return "Email sent successfully."
         return "Status Code: " + str(response.status_code)
     return "Invalid Method. Only POST methods are accepted."
