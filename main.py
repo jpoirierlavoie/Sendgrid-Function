@@ -35,5 +35,4 @@ def sendgrid_function(request):
         if response.status_code == 202:
             return "Email sent successfully"
         return "Status Code: " + str(response.status_code)
-    else:
-        return "Invalid Method. Only POST methods are accepted."
+    return "Invalid Method. Only POST methods are accepted."
