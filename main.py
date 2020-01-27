@@ -4,7 +4,7 @@ import json
 from urllib.parse import urlencode
 from urllib.request import urlopen
 
-def recaptcha_validation():
+def recaptcha_validation(request):
 
     recaptchaURI = "https://www.google.com/recaptcha/api/siteverify"
     recaptcha_response = request.form.get("recaptcha_response", None)
