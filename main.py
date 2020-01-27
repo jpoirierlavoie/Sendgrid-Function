@@ -25,7 +25,7 @@ def recaptcha_validation(request):
 
 def sendgrid_function(request):
 
-    if request.method is "POST":
+    if request.method == "POST":
         message = {
             "personalizations": [
                 {
@@ -55,7 +55,7 @@ def sendgrid_function(request):
         }
         sg = sendgrid.SendGridAPIClient(os.environ["SENDGRID_API_KEY"])
         response = sg.send(message)
-        if response.status_code is 202:
+        if response.status_code == 202:
             return "Email sent successfully."
         return "Status Code: " + str(response.status_code)
     return "Invalid Method. Only POST methods are accepted."
