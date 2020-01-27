@@ -19,4 +19,4 @@ jobs:
       - uses: actions/checkout@master
       - uses: snyk/actions/python@master
         env:
-          SNYK_TOKEN: debcd346-8f5e-41aa-bdb7-f3db0fd3a988
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
