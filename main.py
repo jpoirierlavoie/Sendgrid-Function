@@ -20,8 +20,8 @@ def recaptcha_validation():
     success = result.get("success", None)
 
     if success == True:
-        print "Recaptcha passed."
-    print "Recaptcha failed."
+        return "Recaptcha passed."
+    return "Recaptcha failed."
 
 def sendgrid_function(request):
 
