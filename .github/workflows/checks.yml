@@ -3,18 +3,18 @@ on: push
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Linting
+    name: Python Linting
     steps:
       - uses: actions/checkout@v2
       - uses: cclauss/Find-Python-syntax-errors-action@master
   style:
     runs-on: ubuntu-latest
-    name: Style Checking
+    name: Python Style Checking
     steps:
       - uses: andymckay/pycodestyle-action@master
   security:
     runs-on: ubuntu-latest
-    name: Security Scan
+    name: Snyk Security Scan
     steps:
       - uses: actions/checkout@master
       - uses: snyk/actions/python@master
