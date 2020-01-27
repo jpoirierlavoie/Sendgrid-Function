@@ -12,3 +12,11 @@ jobs:
     name: Style Checking
     steps:  
       - uses: andymckay/pycodestyle-action@master
+  security:
+    runs-on: ubuntu-latest
+    name: Security Scan
+    steps:
+      - uses: actions/checkout@master
+      - uses: snyk/actions/python@master
+        env:
+          SNYK_TOKEN: debcd346-8f5e-41aa-bdb7-f3db0fd3a988
