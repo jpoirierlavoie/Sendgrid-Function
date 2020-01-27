@@ -1,6 +1,5 @@
 import os
 import sendgrid
-from flask import request
 
 def sendgrid_function(request):
     if request.method == "POST":
