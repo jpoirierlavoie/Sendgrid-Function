@@ -10,3 +10,6 @@ This is a python script designed to be run on Google Cloud's server-less cloud f
 -   Sendgrid account;
 -   Google Cloud platform account; and
 -   A domain with access to DNS records (CNAME and TXT).
+
+## Instructions
+gcloud kms encrypt --keyring=cloud-build-keys --key=environment-variables --plaintext-file=envvars.decrypted --ciphertext-file=envvars.encrypted --location=global
