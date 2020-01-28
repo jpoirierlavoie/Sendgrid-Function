@@ -35,7 +35,7 @@ def sendgrid_function(request):
         }
         return ('', 204, headers)
 
-    elif request.method == "POST":
+    if request.method == "POST":
 
         headers = {
             'Access-Control-Allow-Origin': os.environ["CONTACT_FORM_URI"],
@@ -74,8 +74,7 @@ def sendgrid_function(request):
 
         if response.status_code == 202:
             return ("Email sent successfully.", 200, headers)
-        else:
-            return ("Something went wrong. Status Code: " + str(response.status_code), headers)
+        return ("Something went wrong. Status Code: " + str(response.status_code), headers)
 
     else:
         return "Invalid Method. Only POST methods are accepted."
