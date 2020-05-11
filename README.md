@@ -12,4 +12,4 @@ This is a python script designed to be run on Google Cloud's server-less cloud f
 -   A domain with access to DNS records (CNAME and TXT).
 
 ## Instructions
-gcloud kms encrypt --keyring=cloud-build-keys --key=environment-variables --plaintext-file=envvars.decrypted --ciphertext-file=envvars.encrypted --location=global
+gcloud kms encrypt --keyring=global --key=envvars --plaintext-file=envvars.decrypted --ciphertext-file=envvars.encrypted --location=global

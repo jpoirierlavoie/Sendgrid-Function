@@ -5,8 +5,8 @@ steps:
     [
     "kms",
     "decrypt",
-    "--key=environment-variables",
-    "--keyring=cloud-build-keys",
+    "--key=envvars",
+    "--keyring=global",
     "--location=global",
     "--ciphertext-file=envvars.encrypted",
     "--plaintext-file=envvars.yaml"
