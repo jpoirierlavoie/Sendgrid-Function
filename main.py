@@ -26,7 +26,7 @@ def recaptcha_validation(request):
 def sendgrid_function(request):
     if request.method == "OPTIONS":
         headers = {
-            'Access-Control-Allow-Origin': os.environ["CONTACT_FORM_URI"],
+            'Access-Control-Allow-Origin': "*",
             'Access-Control-Allow-Methods': 'POST',
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Max-Age': '3600'
@@ -34,7 +34,10 @@ def sendgrid_function(request):
         return ('', 204, headers)
     if request.method == "POST":
         headers = {
-            "Access-Control-Allow-Origin": os.environ["CONTACT_FORM_URI"],
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Max-Age": "3600"
         }
         message = {
             "personalizations": [
