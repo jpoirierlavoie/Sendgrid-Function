@@ -1,27 +1,9 @@
 import os
 import sendgrid
+import requests
 import json
 from urllib.parse import urlencode
 from urllib.request import urlopen
-
-def recaptcha_validation(request):
-
-    recaptchaURI = "https://www.google.com/recaptcha/api/siteverify"
-    recaptcha_response = request.form["recaptcha_response"]
-    recaptcha_secret = os.environ["RECAPTCHA_SECRET"]
-    remoteip = request.remote_addr
-    params = urlencode({
-        "secret": recaptcha_secret,
-        "response": recaptcha_response,
-        "remoteip": remoteip,
-        })
-    data = urlopen(recaptchaURI, params.encode("utf-8")).read()
-    result = json.loads(data)
-    success = result.get("success", None)
-
-    if success is True:
-        return "Recaptcha passed."
-    return "Recaptcha failed."
 
 def sendgrid_function(request):
     if request.method == "OPTIONS":
