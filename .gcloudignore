@@ -1,0 +1,6 @@
+.gcloudignore
+.git
+.gitignore
+envvars.decrypted
+README.md
+LICENSE
