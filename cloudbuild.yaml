@@ -5,9 +5,9 @@ steps:
     [
     "kms",
     "decrypt",
-    "--key=envvars",
-    "--keyring=global",
-    "--location=global",
+    "--key=cloud-function",
+    "--keyring=envvars",
+    "--location=northamerica-northeast1",
     "--ciphertext-file=envvars.encrypted",
     "--plaintext-file=envvars.yaml"
     ]
@@ -23,7 +23,7 @@ steps:
     "functions",
     "deploy",
     "sendgrid-function",
-    "--region=us-central1",
+    "--region=northamerica-northeast1",
     "--entry-point=sendgrid_function",
     "--memory=128MB",
     "--runtime=python37",
