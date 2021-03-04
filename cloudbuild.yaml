@@ -25,9 +25,9 @@ steps:
     "sendgrid",
     "--region=northamerica-northeast1",
     "--entry-point=sendgrid_function",
-    "--memory=256MB",
+    "--memory=128MB",
     "--runtime=python37",
-    "--timeout=60s",
+    "--timeout=30s",
     "--max-instances=1",
     "--trigger-http",
     "--env-vars-file=envvars.yaml"
