@@ -1,6 +1,5 @@
 import os
 import sendgrid
-import json
 from flask import Flask, request
 from urllib.parse import urlencode
 from urllib.request import urlopen
