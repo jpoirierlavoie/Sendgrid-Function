@@ -8,7 +8,7 @@ def sendgrid_function(request):
     if request.method == "POST":
         data = {
             "from": {
-                "email": os.environ["FROM_ADDRESS"],
+                "email": os.environ["SENDGRID_ADDRESS"],
                 "name": request.form["name"]
             },
             "reply_to": {
@@ -29,7 +29,7 @@ def sendgrid_function(request):
                             "name": os.environ["ADMIN_NAME"]
                         }
                     ],
-                    "subject": os.environ["SUBJECT"]  + request.form["subject"]
+                    "subject": os.environ["SUBJECT"] + " " + request.form["subject"]
                 }
             ]
         }
