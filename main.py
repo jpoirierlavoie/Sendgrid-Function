@@ -1,8 +1,6 @@
 import os
 import sendgrid
 from flask import Flask, request
-from urllib.parse import urlencode
-from urllib.request import urlopen
 
 def sendgrid_function(request):
     if request.method == "OPTIONS":
