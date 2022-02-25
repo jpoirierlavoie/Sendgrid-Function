@@ -25,8 +25,8 @@ def sendgrid_function(request):
                 {
                     "to": [
                         {
-                            "email": os.environ["TO_ADDRESS"],
-                            "name": os.environ["TO_NAME"]
+                            "email": os.environ["ADMIN_ADDRESS"],
+                            "name": os.environ["ADMIN_NAME"]
                         }
                     ],
                     "subject": os.environ["SUBJECT"]  + request.form["subject"]
