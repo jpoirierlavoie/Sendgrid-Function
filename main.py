@@ -11,17 +11,6 @@ def sendgrid_function(request):
             "Access-Control-Max-Age": "3600"
         }
         message = {
-            "personalizations": [
-                {
-                    "to": [
-                        {
-                            "email": os.environ["ADMIN_ADDRESS"],
-                            "name": os.environ["ADMIN_NAME"]
-                        }
-                    ],
-                    "subject": os.environ["SUBJECT"]  + request.form["subject"]
-                }
-            ],
             "from": {
                 "email": os.environ["FROM_ADDRESS"],
                 "name": request.form["name"]
@@ -35,10 +24,21 @@ def sendgrid_function(request):
                     "type": "text/plain",
                     "value": request.form["message"]
                 }
+            ],
+            "personalizations": [
+                {
+                    "to": [
+                        {
+                            "email": os.environ["ADMIN_ADDRESS"],
+                            "name": os.environ["ADMIN_NAME"]
+                        }
+                    ],
+                    "subject": os.environ["SUBJECT"]  + request.form["subject"]
+                }
             ]
         }
         sg = sendgrid.SendGridAPIClient(os.environ["SENDGRID_API_KEY"])
-        response = sg.send(message)
+        response = sg.client.mail.send.post(request_body=message)
         if response.status_code == 202:
             return ("Email sent successfully.", 200, headers)
         return ("Something went wrong. Status Code: " + str(response.status_code), headers)
