@@ -1,16 +1,12 @@
-import os
 import sendgrid
+import os
 from flask import Flask, request
+
+sg = sendgrid.SendGridAPIClient(os.environ["SENDGRID_API_KEY"])
 
 def sendgrid_function(request):
     if request.method == "POST":
-        headers = {
-            "Access-Control-Allow-Origin": os.environ["CONTACT_FORM_URI"],
-            "Access-Control-Allow-Methods": "POST",
-            "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Max-Age": "3600"
-        }
-        message = {
+        data = {
             "from": {
                 "email": os.environ["FROM_ADDRESS"],
                 "name": request.form["name"]
@@ -37,8 +33,8 @@ def sendgrid_function(request):
                 }
             ]
         }
-        sg = sendgrid.SendGridAPIClient(os.environ["SENDGRID_API_KEY"])
-        response = sg.client.mail.send.post(request_body=message)
+
+        response = sg.client.mail.send.post(request_body=data)
         if response.status_code == 202:
             return ("Email sent successfully.", 200, headers)
         return ("Something went wrong. Status Code: " + str(response.status_code), headers)
